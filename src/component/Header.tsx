@@ -20,7 +20,7 @@ interface HeaderProps {
   onDrawerToggle: () => void;
 }
 
-export default function Header(props: HeaderProps) {
+const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
   const { onDrawerToggle } = props;
 
   return (
@@ -115,4 +115,5 @@ export default function Header(props: HeaderProps) {
       </AppBar>
     </React.Fragment>
   );
-}
+};
+export default Header;

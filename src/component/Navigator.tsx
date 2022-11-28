@@ -62,14 +62,14 @@ const itemCategory = {
   px: 3,
 };
 
-export default function Navigator(props: DrawerProps) {
+const Navigator: React.FC<DrawerProps> = (props: DrawerProps) => {
   const { ...other } = props;
 
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
         <ListItem sx={{ ...item, ...itemCategory, fontSize: 22, color: '#fff' }}>
-          Paperbase
+          MANETTA
         </ListItem>
         <ListItem sx={{ ...item, ...itemCategory }}>
           <ListItemIcon>
@@ -96,4 +96,5 @@ export default function Navigator(props: DrawerProps) {
       </List>
     </Drawer>
   );
-}
+};
+export default Navigator;
