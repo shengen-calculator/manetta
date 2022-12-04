@@ -1,4 +1,4 @@
-export type MessageType = "ERROR" | "INFO" | "WARNING";
+export type MessageType = "ERROR" | "INFO" | "WARNING" | "SUCCESS";
 export type AuthenticationState = {
     role: string,
     name: string,
