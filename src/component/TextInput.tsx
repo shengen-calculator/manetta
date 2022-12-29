@@ -1,5 +1,6 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
+import {SxProps, Theme} from "@mui/material";
 
 interface Props {
     label: string
@@ -9,7 +10,7 @@ interface Props {
     variant?: "standard" | "filled" | "outlined"
     value?: string
     type?: "text" | "password"
-    sx?: Array<Function | object | boolean> | Function | object
+    sx?: SxProps<Theme> | undefined
 }
 
 const TextInput: React.FC<Props> = ({
@@ -23,6 +24,7 @@ const TextInput: React.FC<Props> = ({
                                         sx}) => {
 
     const error = !!(errorMessage && errorMessage.length > 0);
+    const propSx = sx ? sx : {};
 
     return (
         <TextField
@@ -35,7 +37,9 @@ const TextInput: React.FC<Props> = ({
             type={type ? type : "text"}
             error={error}
             helperText={errorMessage ? errorMessage : ""}
-            sx={sx ? sx : {}}
+            InputProps={{
+                sx: propSx
+            }}
         />
     );
 };

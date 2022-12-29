@@ -4,9 +4,9 @@ export interface AuthenticationParams {
 }
 
 export interface RegistrationParams {
+    name: string
     email: string
     password: string
-    repeatPassword: string
 }
 
 export interface TokenResult {

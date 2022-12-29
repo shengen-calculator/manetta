@@ -1,7 +1,8 @@
 import initialState from './initialState';
 import {types} from "../actions/types";
+import {AuthenticationState} from "./types";
 
-export default function authenticationReducer(state = initialState.authentication, action: any) {
+export default function authenticationReducer(state = initialState.authentication, action: any): AuthenticationState {
     switch (action.type) {
 
         case types.AUTHENTICATION_REQUEST:
@@ -14,7 +15,6 @@ export default function authenticationReducer(state = initialState.authenticatio
             return {
                 ...state,
                 role: action.data.claims.role,
-                vip: action.data.claims.vip,
                 logging: false
             };
 
@@ -22,33 +22,31 @@ export default function authenticationReducer(state = initialState.authenticatio
             return {
                 ...state,
                 role: '',
-                vip: '',
                 logging: false
             };
 
         case types.REGISTRATION_REQUEST:
             return {
                 ...state,
-                registrating: true
+                registering: true
             };
 
         case types.REGISTRATION_SUCCESS:
             return {
                 ...state,
-                registrating: false
+                registering: false
             };
 
         case types.REGISTRATION_FAILURE:
             return {
                 ...state,
-                registrating: false
+                registering: false
             };
 
         case types.LOG_OUT_SUCCESS:
             return {
                 ...state,
-                role:'',
-                vip:'',
+                role:''
             };
 
         default:

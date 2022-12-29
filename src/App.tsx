@@ -33,7 +33,7 @@ const Paperbase: React.FC = () => {
   };
 
   const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
-    isAuthenticated: true,
+    isAuthenticated: false,
     pathname: '/registration',
   };
 
@@ -63,7 +63,11 @@ const Paperbase: React.FC = () => {
               <Header onDrawerToggle={handleDrawerToggle}/>
               <Box component="main" sx={{flex: 1, py: 6, px: 4, bgcolor: '#eaeff1'}}>
                 <Routes>
-                  <Route path="/" element={<Content/>}/>
+                  <Route path="/" element={
+                    <PrivateRoute
+                        {...defaultProtectedRouteProps}
+                        outlet={<Content/>}/>
+                  }/>
                   <Route path="/login" element={<LoginPage/>}/>
                   <Route path="/registration" element={<RegistrationPage/>}/>
                   <Route path="/operations" element={

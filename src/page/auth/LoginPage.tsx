@@ -8,10 +8,11 @@ import Button from "@mui/material/Button";
 import {ApplicationState, AuthenticationState} from "../../redux/reducers/types";
 import {useState, useEffect} from "react";
 import {connect} from "react-redux";
-import {authenticationRequest} from "../../redux/actions/authenticationActions";
+import {AuthenticationAction, authenticationRequest} from "../../redux/actions/authenticationActions";
 import TextInput from "../../component/TextInput";
 import {regEmail} from "../../util/Regs";
 import { useNavigate } from "react-router-dom";
+import { AuthenticationParams } from "../../types";
 
 type Error = {
     email?: string
@@ -24,16 +25,17 @@ type Authentication = {
 }
 interface Props {
     auth: AuthenticationState
+    authenticationRequest: (params: AuthenticationParams) => AuthenticationAction | undefined
 }
 
-const LoginPage: React.FC<Props> = ({auth}) => {
+const LoginPage: React.FC<Props> = ({auth, authenticationRequest}) => {
     const [authentication, setAuthentication] = useState<Authentication>({
         email: '',
         password: '',
         requestInProcess: false
     });
     const [errors, setErrors] = useState<Error>({});
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -129,6 +131,7 @@ const LoginPage: React.FC<Props> = ({auth}) => {
                             variant="contained"
                             sx={{width: 160}}
                             color="primary"
+                            disabled={authentication.requestInProcess}
                         >
                             {authentication.requestInProcess ? "Logging..." : "Login"}
                         </Button>

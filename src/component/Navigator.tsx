@@ -17,32 +17,41 @@ import SettingsInputComponentIcon from '@mui/icons-material/SettingsInputCompone
 import TimerIcon from '@mui/icons-material/Timer';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PhonelinkSetupIcon from '@mui/icons-material/PhonelinkSetup';
+import {ReactElement} from "react";
+import {NavLink,matchRoutes, useLocation} from "react-router-dom";
 
-const categories = [
+
+type MenuItem = {
+  id: string
+  icon: ReactElement
+  path: string
+  active?: boolean
+}
+
+type Menu = {
+  id: string
+  children: MenuItem[]
+}
+
+const categories: Menu[] = [
   {
-    id: 'Build',
+    id: 'Authentication',
     children: [
-      {
-        id: 'Authentication',
-        icon: <PeopleIcon />,
-        active: true,
-      },
-      { id: 'Database', icon: <DnsRoundedIcon /> },
-      { id: 'Storage', icon: <PermMediaOutlinedIcon /> },
-      { id: 'Hosting', icon: <PublicIcon /> },
-      { id: 'Functions', icon: <SettingsEthernetIcon /> },
-      {
-        id: 'Machine learning',
-        icon: <SettingsInputComponentIcon />,
-      },
+      { id: 'Login', icon: <DnsRoundedIcon />, path: 'login'},
+      { id: 'Registration', icon: <SettingsInputComponentIcon />, path: 'registration' },
+      { id: 'LogOut', icon: <PeopleIcon />, path: 'logout'}
     ],
   },
   {
-    id: 'Quality',
+    id: 'Work',
     children: [
-      { id: 'Analytics', icon: <SettingsIcon /> },
-      { id: 'Performance', icon: <TimerIcon /> },
-      { id: 'Test Lab', icon: <PhonelinkSetupIcon /> },
+      { id: 'Operations', path: 'operations', icon: <SettingsIcon /> },
+      { id: 'Currencies', path: 'login', icon: <TimerIcon /> },
+      { id: 'Tags', path: 'tags', icon: <PhonelinkSetupIcon /> },
+      { id: 'Report', path: 'login', icon: <SettingsEthernetIcon /> },
+      { id: 'Groups', path: 'login', icon: <PublicIcon /> },
+      { id: 'Accounts', path: 'login', icon: <PermMediaOutlinedIcon /> },
+      { id: 'Blocked amount', path: 'login', icon: <HomeIcon />}
     ],
   },
 ];
@@ -65,31 +74,39 @@ const itemCategory = {
 const Navigator: React.FC<DrawerProps> = (props: DrawerProps) => {
   const { ...other } = props;
 
+  // @ts-ignore
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
         <ListItem sx={{ ...item, ...itemCategory, fontSize: 22, color: '#fff' }}>
           MANETTA
         </ListItem>
-        <ListItem sx={{ ...item, ...itemCategory }}>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText>Project Overview</ListItemText>
-        </ListItem>
         {categories.map(({ id, children }) => (
           <Box key={id} sx={{ bgcolor: '#101F33' }}>
             <ListItem sx={{ py: 2, px: 3 }}>
               <ListItemText sx={{ color: '#fff' }}>{id}</ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active }) => (
-              <ListItem disablePadding key={childId}>
-                <ListItemButton selected={active} sx={item}>
-                  <ListItemIcon>{icon}</ListItemIcon>
-                  <ListItemText>{childId}</ListItemText>
-                </ListItemButton>
-              </ListItem>
-            ))}
+            {children.map(({
+                             id: childId,
+                             icon,
+                             path, active }) => {
+              const location = useLocation();
+              const selected = location.pathname.includes(path);
+                return (
+                    <ListItem
+                    disablePadding
+                    component={NavLink}
+                    to={path}
+                    key={childId}>
+                  <ListItemButton
+                      selected={selected}
+                      sx={item}>
+                    <ListItemIcon>{icon}</ListItemIcon>
+                    <ListItemText>{childId}</ListItemText>
+                  </ListItemButton>
+                </ListItem>)
+            })
+            }
             <Divider sx={{ mt: 2 }} />
           </Box>
         ))}
