@@ -20,7 +20,6 @@ root.render(
         <PersistGate loading={null} persistor={persistent}>
             <ThemeProvider theme={theme}>
                 <SnackbarProvider maxSnack={3}>
-                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline/>
                     <App/>
                     <ToastrMessage/>

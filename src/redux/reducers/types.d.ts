@@ -1,7 +1,9 @@
 import {VariantType} from "notistack";
 
+export type AuthenticationRole = "ADMIN" | "BOOKER" | "NOT_AUTHORIZED";
+
 export type AuthenticationState = {
-    role: string,
+    role: AuthenticationRole,
     name: string,
     logging: boolean,
     registering: boolean

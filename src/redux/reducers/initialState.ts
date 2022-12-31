@@ -2,7 +2,7 @@ import {ApplicationState} from "./types";
 
 const initialState: ApplicationState = {
     authentication: {
-        role: "",
+        role: "NOT_AUTHORIZED",
         name: "",
         logging: false,
         registering: false

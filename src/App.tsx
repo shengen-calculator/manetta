@@ -71,7 +71,7 @@ const Paperbase: React.FC = () => {
                         outlet={<Content/>}/>
                   }/>
                   <Route path="/login" element={<LoginPage/>}/>
-                  <Route path="/registration" element={<RegistrationPage/>}/>
+                  <Route path="/register" element={<RegistrationPage/>}/>
                   <Route path="/operations" element={
                     <PrivateRoute
                         {...defaultProtectedRouteProps}

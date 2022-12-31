@@ -195,11 +195,11 @@ const RegistrationPage: React.FC<Props> = ({auth, registrationRequest}) => {
     );
 };
 
-function mapStateToProps(state: ApplicationState) {
+const mapStateToProps = (state: ApplicationState) => {
     return {
         auth: state.authentication
     }
-}
+};
 
 // noinspection JSUnusedGlobalSymbols
 const mapDispatchToProps = {

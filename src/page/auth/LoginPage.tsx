@@ -142,11 +142,11 @@ const LoginPage: React.FC<Props> = ({auth, authenticationRequest}) => {
     );
 };
 
-function mapStateToProps(state: ApplicationState) {
+const mapStateToProps = (state: ApplicationState) => {
     return {
         auth: state.authentication
     }
-}
+};
 
 // noinspection JSUnusedGlobalSymbols
 const mapDispatchToProps = {

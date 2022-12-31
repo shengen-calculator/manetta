@@ -21,7 +21,7 @@ export default function authenticationReducer(state = initialState.authenticatio
         case types.AUTHENTICATION_FAILURE:
             return {
                 ...state,
-                role: '',
+                role: "NOT_AUTHORIZED",
                 logging: false
             };
 
@@ -46,7 +46,7 @@ export default function authenticationReducer(state = initialState.authenticatio
         case types.LOG_OUT_SUCCESS:
             return {
                 ...state,
-                role:''
+                role: "NOT_AUTHORIZED"
             };
 
         default:

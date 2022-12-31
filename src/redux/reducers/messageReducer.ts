@@ -9,7 +9,7 @@ export default function messageReducer(state = initialState.message, action: any
             return {
                 ...state,
                 type: 'success',
-                text: 'Вітаємо. Реєстрація успішна.'
+                text: 'Hello. Registration success.'
             };
 
         case types.REGISTRATION_FAILURE:
@@ -30,7 +30,7 @@ export default function messageReducer(state = initialState.message, action: any
             return {
                 ...state,
                 type: 'error',
-                text: 'Ваш обліковий запис не активовано'
+                text: 'Your account is not activated'
             };
 
 
