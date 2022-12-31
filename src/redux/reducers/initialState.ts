@@ -8,9 +8,10 @@ const initialState: ApplicationState = {
         registering: false
     },
     message: {
-        type: "INFO",
+        type: "info",
         text: ""
-    }
+    },
+    apiCallsInProgress: 0
 };
 
 export default initialState;

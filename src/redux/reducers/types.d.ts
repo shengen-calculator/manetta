@@ -1,4 +1,5 @@
-export type MessageType = "ERROR" | "INFO" | "WARNING" | "SUCCESS";
+import {VariantType} from "notistack";
+
 export type AuthenticationState = {
     role: string,
     name: string,
@@ -6,10 +7,11 @@ export type AuthenticationState = {
     registering: boolean
 }
 export type MessageState = {
-    type: MessageType
+    type: VariantType
     text: string
 }
 export type ApplicationState = {
     authentication: AuthenticationState,
-    message: MessageState
+    message: MessageState,
+    apiCallsInProgress: number
 }

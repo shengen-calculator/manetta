@@ -8,6 +8,8 @@ import App from './App';
 import theme from './theme';
 import configureStore from './redux/configureStore';
 import initialState from "./redux/reducers/initialState";
+import ToastrMessage from "./component/ToastrMessage";
+import {SnackbarProvider} from "notistack";
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement!);
@@ -17,9 +19,12 @@ root.render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistent}>
             <ThemeProvider theme={theme}>
-                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                <CssBaseline/>
-                <App/>
+                <SnackbarProvider maxSnack={3}>
+                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                    <CssBaseline/>
+                    <App/>
+                    <ToastrMessage/>
+                </SnackbarProvider>
             </ThemeProvider>
         </PersistGate>
     </Provider>,

@@ -19,6 +19,7 @@ import PrivateRoute, {ProtectedRouteProps} from "./component/PrivateRoute";
 import OperationsPage from "./page/operation/OperationsPage";
 import TagsPage from "./page/tag/TagsPage";
 import AccountsPage from "./page/account/AccountsPage";
+import Progress from "./component/Progress";
 
 
 
@@ -61,6 +62,7 @@ const Paperbase: React.FC = () => {
             </Box>
             <Box sx={{flex: 1, display: 'flex', flexDirection: 'column'}}>
               <Header onDrawerToggle={handleDrawerToggle}/>
+              <Progress />
               <Box component="main" sx={{flex: 1, py: 6, px: 4, bgcolor: '#eaeff1'}}>
                 <Routes>
                   <Route path="/" element={
