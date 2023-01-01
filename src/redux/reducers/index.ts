@@ -1,6 +1,7 @@
 import storage from 'redux-persist/lib/storage';
 import {combineReducers} from 'redux';
 import authentication from './authenticationReducer';
+import apiCallsInProgress from "./apiStatusReducer";
 import message from './messageReducer';
 import {persistReducer} from "redux-persist";
 
@@ -25,7 +26,8 @@ const authPersistConfig = {
 
 const rootReducer = combineReducers({
     authentication: persistReducer(authPersistConfig, authentication),
-    message
+    message,
+    apiCallsInProgress,
 });
 
 export default rootReducer;

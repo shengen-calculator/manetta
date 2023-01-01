@@ -5,7 +5,8 @@ const initialState: ApplicationState = {
         role: "NOT_AUTHORIZED",
         name: "",
         logging: false,
-        registering: false
+        registering: false,
+        error: ""
     },
     message: {
         type: "info",

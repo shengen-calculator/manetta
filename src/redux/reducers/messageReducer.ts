@@ -9,15 +9,9 @@ export default function messageReducer(state = initialState.message, action: any
             return {
                 ...state,
                 type: 'success',
-                text: 'Hello. Registration success.'
+                text: 'Registration success.'
             };
 
-        case types.REGISTRATION_FAILURE:
-            return {
-                ...state,
-                type: 'error',
-                text: action.text
-            };
 
         case types.AUTHENTICATION_FAILURE:
             return {

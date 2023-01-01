@@ -19,6 +19,7 @@ type Error = {
     name?: string
     password?: string
     confirmation?: string
+    formError?: string
 }
 type Registration = {
     name: string
@@ -45,22 +46,29 @@ const RegistrationPage: React.FC<Props> = ({auth, registrationRequest}) => {
 
 
     useEffect(() => {
-        if (auth.registering === true && registration.requestInProcess === false) {
+        if (auth.registering && !registration.requestInProcess) {
             setRegistration(prev => ({
                 ...prev,
                 requestInProcess: true
             }));
         }
 
-        if (auth.registering === false && registration.requestInProcess === true) {
+        if (!auth.registering && registration.requestInProcess) {
             setRegistration(prev => ({
                 ...prev,
                 requestInProcess: false
             }));
-            navigate('/login');
+            if(auth.error) {
+                setErrors({
+                    formError: auth.error
+                })
+            } else {
+                navigate('/login');
+            }
         }
 
-    }, [auth.registering, navigate, registration]);
+
+    }, [auth.registering, auth.error, navigate, registration]);
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,11 +108,10 @@ const RegistrationPage: React.FC<Props> = ({auth, registrationRequest}) => {
             errors.confirmation = "Required field";
         }
 
-        if(!errors.password && password !== confirmation) {
+        if(!errors.password && confirmation && password !== confirmation) {
             errors.confirmation = "Password and confirmation do not match";
             setRegistration(prev => ({
                 ...prev,
-                password: '',
                 confirmation: ''
             }));
         }
@@ -138,6 +145,11 @@ const RegistrationPage: React.FC<Props> = ({auth, registrationRequest}) => {
             </AppBar>
             <form onSubmit={handleRegistration}>
                 <Grid container spacing={2} alignItems="center" direction="column" columnSpacing={3}>
+                    {errors.formError && <Grid item xs={3} sx={{margin: "25px"}}>
+                        <Typography variant="h6" sx={{ color: "#D32F2F" }}>
+                            {errors.formError}
+                        </Typography>
+                    </Grid>}
                     <Grid item xs={3} sx={{margin: "25px"}}>
                         <TextInput
                             label="Name"

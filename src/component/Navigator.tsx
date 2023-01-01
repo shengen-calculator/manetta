@@ -86,7 +86,7 @@ const Navigator: React.FC<NavigatorProps> = (props: NavigatorProps) => {
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
-        <ListItem sx={{ ...item, ...itemCategory, fontSize: 22, color: '#fff' }}>
+        <ListItem sx={{ ...item, ...itemCategory, fontSize: 42, color: '#fff' }}>
           MANETTA
         </ListItem>
         {categories.filter(m => ~m.role.indexOf(auth.role)).map(({ id, children }) => (

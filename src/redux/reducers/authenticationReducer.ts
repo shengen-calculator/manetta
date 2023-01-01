@@ -8,6 +8,7 @@ export default function authenticationReducer(state = initialState.authenticatio
         case types.AUTHENTICATION_REQUEST:
             return {
                 ...state,
+                error: "",
                 logging: true
             };
 
@@ -22,12 +23,14 @@ export default function authenticationReducer(state = initialState.authenticatio
             return {
                 ...state,
                 role: "NOT_AUTHORIZED",
+                error: action.text,
                 logging: false
             };
 
         case types.REGISTRATION_REQUEST:
             return {
                 ...state,
+                error: "",
                 registering: true
             };
 
@@ -40,6 +43,7 @@ export default function authenticationReducer(state = initialState.authenticatio
         case types.REGISTRATION_FAILURE:
             return {
                 ...state,
+                error: action.text,
                 registering: false
             };
 

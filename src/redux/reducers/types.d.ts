@@ -6,7 +6,8 @@ export type AuthenticationState = {
     role: AuthenticationRole,
     name: string,
     logging: boolean,
-    registering: boolean
+    registering: boolean,
+    error: string
 }
 export type MessageState = {
     type: VariantType
