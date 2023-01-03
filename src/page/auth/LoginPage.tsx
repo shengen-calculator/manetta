@@ -17,6 +17,7 @@ import { AuthenticationParams } from "../../types";
 type Error = {
     email?: string
     password?: string
+    formError?: string
 }
 type Authentication = {
     email: string
@@ -65,7 +66,13 @@ const LoginPage: React.FC<Props> = ({auth, authenticationRequest}) => {
                 ...prev,
                 requestInProcess: false
             }));
-            navigate('/');
+            if(auth.error) {
+                setErrors({
+                    formError: auth.error
+                })
+            } else {
+                navigate('/operations');
+            }
         }
     }, [auth.logging, navigate, authentication]);
 
@@ -108,10 +115,16 @@ const LoginPage: React.FC<Props> = ({auth, authenticationRequest}) => {
             </AppBar>
             <form onSubmit={handleAuthentication}>
                 <Grid container spacing={2} alignItems="center" direction="column" columnSpacing={3}>
+                    {errors.formError && <Grid item xs={3} sx={{margin: "25px"}}>
+                        <Typography variant="h6" sx={{ color: "#D32F2F" }}>
+                            {errors.formError}
+                        </Typography>
+                    </Grid>}
                     <Grid item xs={3} sx={{margin: "25px"}}>
                         <TextInput
                             label="Login"
                             name="email"
+                            sx={{fontSize: 22}}
                             errorMessage={errors.email}
                             onChange={handleChange}
                             value={authentication.email}/>
@@ -120,6 +133,7 @@ const LoginPage: React.FC<Props> = ({auth, authenticationRequest}) => {
                         <TextInput
                             label="Password"
                             name="password"
+                            sx={{fontSize: 22}}
                             errorMessage={errors.password}
                             onChange={handleChange}
                             value={authentication.password}

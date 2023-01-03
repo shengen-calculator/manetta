@@ -8,7 +8,7 @@ export function* logIn(action: AuthenticationAction) {
     try {
         yield put({type: types.BEGIN_API_CALL});
         yield call(AuthenticationApi.logIn, action.params);
-
+        yield put({type: types.AUTHENTICATION_GET_TOKEN});
     } catch (e: any) {
         yield put({type: types.AUTHENTICATION_FAILURE, text: e.message});
     }
@@ -16,7 +16,6 @@ export function* logIn(action: AuthenticationAction) {
 
 export function* getTokenResult() {
     try {
-        yield put({type: types.BEGIN_API_CALL});
         const data: TokenResult = yield call(AuthenticationApi.getTokenResult);
         if(data.claims.role) {
             yield put({type: types.AUTHENTICATION_SUCCESS, data: data});

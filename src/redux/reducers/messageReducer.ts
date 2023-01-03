@@ -12,14 +12,6 @@ export default function messageReducer(state = initialState.message, action: any
                 text: 'Registration success.'
             };
 
-
-        case types.AUTHENTICATION_FAILURE:
-            return {
-                ...state,
-                type: 'error',
-                text: action.text
-            };
-
         case types.AUTHENTICATION_ROLE_FAILURE:
             return {
                 ...state,

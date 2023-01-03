@@ -9,7 +9,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import PeopleIcon from '@mui/icons-material/People';
-import DnsRoundedIcon from '@mui/icons-material/DnsRounded';
 import PermMediaOutlinedIcon from '@mui/icons-material/PhotoSizeSelectActual';
 import PublicIcon from '@mui/icons-material/Public';
 import SettingsEthernetIcon from '@mui/icons-material/SettingsEthernet';
@@ -39,9 +38,8 @@ type Menu = {
 const categories: Menu[] = [
   {
     id: 'Authentication',
-    role: ["NOT_AUTHORIZED", "ADMIN", "BOOKER"],
+    role: ["ADMIN", "BOOKER"],
     children: [
-      {id: 'Login', icon: <DnsRoundedIcon/>, path: 'login', role: ["NOT_AUTHORIZED"]},
       {id: 'LogOut', icon: <PeopleIcon/>, path: 'logout', role: ["ADMIN", "BOOKER"]}
     ]
   },
@@ -50,12 +48,12 @@ const categories: Menu[] = [
     role: ["ADMIN", "BOOKER"],
     children: [
       {id: 'Operations', path: 'operations', icon: <SettingsIcon/>, role: ["ADMIN", "BOOKER"]},
-      {id: 'Currencies', path: 'currencies', icon: <TimerIcon/>, role: ["BOOKER"]},
-      {id: 'Tags', path: 'tags', icon: <PhonelinkSetupIcon/>, role: ["BOOKER"]},
-      {id: 'Report', path: 'reports', icon: <SettingsEthernetIcon/>, role: ["BOOKER"]},
-      {id: 'Groups', path: 'groups', icon: <PublicIcon/>, role: ["BOOKER"]},
-      {id: 'Accounts', path: 'accounts', icon: <PermMediaOutlinedIcon/>, role: ["BOOKER"]},
-      {id: 'Blocked amount', path: 'blocked', icon: <HomeIcon/>, role: ["BOOKER"]}
+      {id: 'Currencies', path: 'currencies', icon: <TimerIcon/>, role: ["ADMIN"]},
+      {id: 'Tags', path: 'tags', icon: <PhonelinkSetupIcon/>, role: ["ADMIN"]},
+      {id: 'Report', path: 'reports', icon: <SettingsEthernetIcon/>, role: ["ADMIN"]},
+      {id: 'Groups', path: 'groups', icon: <PublicIcon/>, role: ["ADMIN"]},
+      {id: 'Accounts', path: 'accounts', icon: <PermMediaOutlinedIcon/>, role: ["ADMIN"]},
+      {id: 'Blocked amount', path: 'blocked', icon: <HomeIcon/>, role: ["ADMIN"]}
     ]
   }
 ];

@@ -20,12 +20,17 @@ import OperationsPage from "./page/operation/OperationsPage";
 import TagsPage from "./page/tag/TagsPage";
 import AccountsPage from "./page/account/AccountsPage";
 import Progress from "./component/Progress";
-
-
+import {ApplicationState, AuthenticationState} from "./redux/reducers/types";
+import {connect} from "react-redux";
+import LogOutPage from "./page/auth/LogOutPage";
 
 const drawerWidth = 256;
 
-const Paperbase: React.FC = () => {
+interface Props {
+  auth: AuthenticationState
+}
+
+const Paperbase: React.FC<Props> = ({auth}) => {
   const [mobileOpen, setMobileOpen] = React.useState<boolean>(false);
   const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
 
@@ -34,8 +39,8 @@ const Paperbase: React.FC = () => {
   };
 
   const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
-    isAuthenticated: false,
-    pathname: '/registration',
+    isAuthenticated: auth.role !== "NOT_AUTHORIZED",
+    pathname: '/login',
   };
 
   return (
@@ -71,6 +76,7 @@ const Paperbase: React.FC = () => {
                         outlet={<Content/>}/>
                   }/>
                   <Route path="/login" element={<LoginPage/>}/>
+                  <Route path="/logout" element={<LogOutPage/>}/>
                   <Route path="/register" element={<RegistrationPage/>}/>
                   <Route path="/operations" element={
                     <PrivateRoute
@@ -102,4 +108,13 @@ const Paperbase: React.FC = () => {
       </ThemeProvider>
   );
 };
-export default Paperbase;
+
+const mapStateToProps = (state: ApplicationState) => {
+  return {
+    auth: state.authentication
+  }
+};
+
+export default connect(
+    mapStateToProps
+)(Paperbase);
