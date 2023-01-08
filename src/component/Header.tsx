@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
         <AppBar color="primary" position="sticky" elevation={0}>
             <Toolbar>
                 <Grid container spacing={1} alignItems="center">
-                    <Grid sx={{ display: { sm: 'none', xs: 'block' } }} item>
+                    <Grid sx={{ display: { lg: 'none', xs: 'block' } }} item>
                         <IconButton
                             color="inherit"
                             aria-label="open drawer"
