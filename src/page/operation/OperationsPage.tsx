@@ -1,63 +1,54 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
-import {Grid, Paper, styled} from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+import Toolbar from '@mui/material/Toolbar';
+import { Dayjs } from 'dayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Box from '@mui/material/Box';
+import Autocomplete from '@mui/material/Autocomplete';
+import DeleteIcon from '@mui/icons-material/Delete';
+import InputLabel from '@mui/material/InputLabel';
+import Paper from '@mui/material/Paper';
+import Chip from '@mui/material/Chip';
+import TagFacesIcon from '@mui/icons-material/TagFaces';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import {AppBar, Button, Grid, IconButton, styled, TextField} from "@mui/material";
+import OperationRow from "./OperationRow";
 
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
-
+interface ChipData {
+    key: number;
+    label: string;
+}
 const OperationsPage: React.FC = () => {
+
     return (
-        <Grid container rowSpacing={1}>
-            <Grid item xs={3} md={1.2}>
-                <Item>date</Item>
-            </Grid>
-            <Grid item xs={2} md={0.8}>
-                <Item>account</Item>
-            </Grid>
-            <Grid item xs={2} md={1}>
-                <Item>group</Item>
-            </Grid>
-            <Grid item xs={5} md={3}>
-                <Item>tags</Item>
-            </Grid>
-            <Grid item xs={7} md={4}>
-                <Item>description</Item>
-            </Grid>
-            <Grid item xs={2} md={0.8}>
-                <Item>currency</Item>
-            </Grid>
-            <Grid item xs={3} md={1.2}>
-                <Item>sum</Item>
-            </Grid>
-
-
-            <Grid item xs={3} md={1.2}>
-                <Item>date</Item>
-            </Grid>
-            <Grid item xs={2} md={0.8}>
-                <Item>account</Item>
-            </Grid>
-            <Grid item xs={2} md={1}>
-                <Item>group</Item>
-            </Grid>
-            <Grid item xs={5} md={3}>
-                <Item>tags</Item>
-            </Grid>
-            <Grid item xs={7} md={4}>
-                <Item>description</Item>
-            </Grid>
-            <Grid item xs={2} md={0.8}>
-                <Item>currency</Item>
-            </Grid>
-            <Grid item xs={3} md={1.2}>
-                <Item>sum</Item>
-            </Grid>
-        </Grid>
+        <Paper sx={{ margin: 'auto', overflow: 'hidden'}}>
+            <AppBar
+                position="static"
+                color="default"
+                elevation={0}
+                sx={{borderBottom: '1px solid rgba(0, 0, 0, 0.12)'}}
+            >
+                <Toolbar>
+                    <Grid container spacing={2} alignItems="center">
+                        <Grid item xs>
+                            <Typography color="textPrimary">
+                                Please fill the field
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Toolbar>
+            </AppBar>
+            <OperationRow/>
+            <OperationRow/>
+            <OperationRow/>
+            <OperationRow/>
+            <OperationRow/>
+        </Paper>
     )
 };
 export default OperationsPage;

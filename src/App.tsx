@@ -32,7 +32,7 @@ interface Props {
 
 const Paperbase: React.FC<Props> = ({auth}) => {
   const [mobileOpen, setMobileOpen] = React.useState<boolean>(false);
-  const isSmUp = useMediaQuery(theme.breakpoints.up('lg'));
+  const isSmUp = useMediaQuery(theme.breakpoints.up('xl'));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -50,7 +50,7 @@ const Paperbase: React.FC<Props> = ({auth}) => {
             <CssBaseline/>
             <Box
                 component="nav"
-                sx={{width: {lg: drawerWidth}, flexShrink: {sm: 0}}}
+                sx={{width: {xl: drawerWidth}, flexShrink: {sm: 0}}}
             >
               {isSmUp ? null : (
                   <Navigator
@@ -62,7 +62,7 @@ const Paperbase: React.FC<Props> = ({auth}) => {
               )}
               <Navigator
                   PaperProps={{style: {width: drawerWidth}}}
-                  sx={{display: {lg: 'block', xs: 'none'}}}
+                  sx={{display: {xl: 'block', xs: 'none'}}}
               />
             </Box>
             <Box sx={{flex: 1, display: 'flex', flexDirection: 'column'}}>
